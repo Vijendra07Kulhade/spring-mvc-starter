@@ -4,13 +4,8 @@
 
 <html>
 <head>
-<title>Spring MVC Tutorial by Crunchify - Hello World Spring MVC
-    Example</title>
-<style type="text/css">
-body {
-    background-image: url('http://crunchify.com/bg.png');
-}
-</style>
+    <title>Spring MVC Tutorial by Crunchify - Hello World Spring MVC Example</title>
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>${message}
 

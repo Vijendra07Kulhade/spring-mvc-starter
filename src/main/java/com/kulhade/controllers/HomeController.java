@@ -28,12 +28,7 @@ public class HomeController {
     @Qualifier("esClient")
     Client client;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder)
-    {
-        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
-    }
-
+   
     /*@PostConstruct
     void init(){
         Settings settings = ImmutableSettings.settingsBuilder()

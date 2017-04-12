@@ -1,22 +1,22 @@
 package com.kulhade.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.kulhade.entity.Product;
 import com.kulhade.entity.User;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
 
 /**
  * Created by vkulhade on 6/8/2016.
@@ -28,6 +28,12 @@ public class HomeController {
     @Qualifier("esClient")
     Client client;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder)
+    {
+        binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+    }
+
     /*@PostConstruct
     void init(){
         Settings settings = ImmutableSettings.settingsBuilder()
@@ -37,11 +43,10 @@ public class HomeController {
         client.addTransportAddress(new InetSocketTransportAddress("localhost",9300));
         this.client=client;
     }*/
-    @RequestMapping("/welcome")
+    @RequestMapping("/home")
     public ModelAndView helloWorld() {
 
-        String message = "<br><div style='text-align:center;'>"
-                + "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
+        String message = "Spring MVC Playground...";
         return new ModelAndView("welcome", "message", message);
     }
 
@@ -54,4 +59,52 @@ public class HomeController {
         IndexResponse response = client.index(indexRequest).actionGet();
         return response;
     }
+
+    @RequestMapping(value="form" , method= RequestMethod.GET)
+    public ModelAndView getForm()
+    {
+        return new ModelAndView("formSubmit", "prdt", new Product());
+
+    }
+
+    @RequestMapping(value="uploadMultipart" , method= RequestMethod.GET)
+    public String uploadMultipartForm()
+    {
+        return "uploadMultiPart";
+
+    }
+
+    @RequestMapping(value = "uploadMultipart", method=RequestMethod.POST)
+    public String uploadMultipart(@RequestParam("name") String name,
+                                  @RequestParam("file") MultipartFile file){
+        if(file.isEmpty()){
+            System.out.println("Blank File along with description "+name);
+        }else {
+            System.out.println("Uploaded File along with description " + name);
+        }
+        return "uploadMultiPart";
+    }
+
+    @RequestMapping(value="/productlist/addproduct" , method= RequestMethod.POST,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ModelAndView addProdt(@ModelAttribute("prdt") Product p,BindingResult bindingResult)
+    {
+
+        //pd.addProduct(p);
+        if(bindingResult.hasErrors()){
+            System.out.println("Error Occurred "+bindingResult.getAllErrors());
+            return new ModelAndView("formSubmit", "prdt", new Product());
+        }
+        System.out.println(" No Error "+ p);
+
+        if(p.getImage().isEmpty()){
+            System.out.println(" No File !!!!");
+        }else{
+
+            System.out.println("  File in Product!!!!"+p.getImage().getOriginalFilename());
+        }
+
+        return new ModelAndView("formSubmit", "prdt", p);
+    }
+
+
 }

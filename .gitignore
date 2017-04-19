@@ -19,3 +19,9 @@ hs_err_pid*
 # Mac Files
 .DS_Store
 
+#node-module
+/node_modules/
+
+#bower-components
+/src/main/webapp/resources/vendor/
+

@@ -1,0 +1,22 @@
+{
+  "name": "spring-mvc-starter-web",
+  "version": "1.0.0",
+  "description": "Web Module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vijendra07Kulhade/spring-mvc-starter.git"
+  },
+  "author": "Vijendra Kulhade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vijendra07Kulhade/spring-mvc-starter/issues"
+  },
+  "homepage": "https://github.com/Vijendra07Kulhade/spring-mvc-starter#readme",
+  "devDependencies": {
+    "bower": "^1.8.0"
+  }
+}

@@ -19,7 +19,9 @@
             <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
                   p:autoDetectFields="false"
                   p:autoDetectGettersSetters="false"
-                  p:indentOutput="true"/>
+                  p:failOnEmptyBeans="false"
+                  p:indentOutput="true">
+            </bean>
         </property>
     </bean>
 

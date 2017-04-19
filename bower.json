@@ -1,0 +1,41 @@
+{
+  "name": "spring-mvc-starter-web",
+  "description": "Web Module",
+  "main": "index.js",
+  "authors": [
+    "Vijendra Kulhade"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Vijendra07Kulhade/spring-mvc-starter",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/webapp/resources/lib",
+    "test",
+    "tests"
+  ],
+  "install": {
+    "path": "src/main/webapp/resources/lib",
+    "sources": {
+      "jquery-ui":[
+        {"src/main/webapp/resources/vendor/jquery-ui/themes/base/images/**":"/images/"},
+        {"src/main/webapp/resources/vendor/jquery-ui/jquery-ui.min.js":"jquery-ui.min.js"},
+        {"src/main/webapp/resources/vendor/jquery-ui/themes/base/jquery-ui.min.css":"jquery-ui.min.css"}
+      ],
+      "jquery": [
+        "src/main/webapp/resources/vendor/jquery/dist/jquery.min.js"
+      ],
+      "bootstrap": [
+          "src/main/webapp/resources/vendor/bootstrap/less/bootstrap.less",
+          "src/main/webapp/resources/vendor/bootstrap/dist/js/bootstrap.min.js",
+          "src/main/webapp/resources/vendor/bootstrap/dist/css/bootstrap.css"
+        ]
+    }
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery-ui": "^1.12.1"
+  }
+}

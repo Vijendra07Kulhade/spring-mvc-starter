@@ -6,6 +6,8 @@ It can used to start a simple Spring MVC project and test various features from 
 2. File Upload within entity class.
 3. Simple jquery ajax call with json data
 
+Integrating to Spring Security over Spring MVC
+
 
 
 Working with the Code..

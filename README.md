@@ -11,8 +11,9 @@ Integrating to Spring Security over Spring MVC
 
 
 Working with the Code..
---clone the repository
---```mvn clean install```
---install node and run ```npm install```
---```npm install bower-installer -g```
---run ```bower-installer```
+1. Clone the repository
+```mvn clean install```
+2. install node and run
+```npm install```
+```npm install bower-installer -g```
+3. Run ```bower-installer```
